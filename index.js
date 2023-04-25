@@ -1,12 +1,13 @@
 import {App} from "./core/App.js";
+import {Board} from "./components/Board.js";
+import {Textarea} from "./components/Textarea.js";
 
-const options = {
-    components: []
-}
 
 const app = new App (
     '#app',
-    options
+    {
+        components: [Textarea, Board]
+    }
 )
 
 app.render()

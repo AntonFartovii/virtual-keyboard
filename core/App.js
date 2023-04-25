@@ -14,7 +14,8 @@ export class App {
         const $el = $.create('div', Component.className)
         const component = new Component($el)
         const componentHtml = component.toHTML()
-        $root.append( componentHtml )
+        $el.html( componentHtml )
+        $root.append( $el )
         return component
       })
 
@@ -24,7 +25,7 @@ export class App {
     render() {
         const appHtml = this.getRoot()
         this.$appContainer.append( appHtml )
-        this.components.forEach(component => component.init())
+        this.components.forEach( component => component.init() )
     }
 
 }
