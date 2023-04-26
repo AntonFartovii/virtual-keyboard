@@ -11,3 +11,20 @@ $root - отвечает за корневой элемент компонент
 На $root вешаются слушатели
 
 $root -> addEventListeners -> input -> onInput
+
+
+Emitter
+  ```
+    // Уведомляем слушателей если они есть
+    // table.emit('key:select', {})
+    emit(event, ...args) {
+   ...
+    }
+    // Подписываемся на уведомления
+    // Добавляем нового слушателя
+    // formula.subscribe('key:select', () => {})
+    subscribe(event, fn) {
+       ...
+    }
+}
+```
