@@ -48,6 +48,8 @@
 }
 
 .key {
+  z-index: 10;
+  box-shadow: 2px 2px 5px rgba(0,0,0,0.3);
   position: relative;
   cursor: pointer;
   min-width: 40px;
@@ -67,6 +69,9 @@
   transition: all 0.2s ease-in-out;
 }
 
+.key * {
+  z-index: 9;
+}
 .key .shift-value {
   position: absolute;
   left: 10%;
@@ -74,7 +79,7 @@
   font-size: 12px;
 }
 
-.tab, .backspace, .caps-lock, .enter, .shift, .control, .alt, .spacebar {
+.tab, .backspace, .capslock, .enter, .shift, .control, .alt, .spacebar {
   background-color: #EEEEEE;
   color: #666666;
   font-size: 16px;
@@ -98,18 +103,29 @@
   width: 100px;
 }
 
-.caps-lock, .shift {
+.capslock {
+  width: 95px;
+}
+.shift-left {
   width: 125px;
 }
 
-.enter, .control {
+
+
+.enter, .control-left {
   width: 75px;
+}
+.control-right {
+
 }
 
 .alt {
   width: 50px;
 }
 
+.arrow {
+  background: #9bb3ea
+}
 /* Стили для активных клавиш */
 .key:active {
   background-color: #CCCCCC;
@@ -121,7 +137,7 @@
 }
 
 /* Стили для зажатых функциональных клавиш */
-.caps-lock.active, .shift.active, .control.active, .alt.active {
+.capslock.active, .shift.active, .control.active, .alt.active {
   background-color: #999999;
   color: #FFFFFF;
 }
@@ -132,6 +148,9 @@
   color: #FFFFFF;
 }
 
-.windows img {
-  width: 15px;
+.windows {
+  background-image: url(./assets/icons/windows-icon.svg);
+  background-size: 50%;
+  background-repeat: no-repeat;
+  background-position: 50%;
 }

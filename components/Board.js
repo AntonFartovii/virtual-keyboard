@@ -5,9 +5,10 @@ import {createBoard} from "./BoardBuilder.js";
 export class Board extends AppComponent {
     static className = 'input-area'
 
-    constructor($root) {
+    constructor($root, options) {
         super($root, {
-            listeners: ['click', 'keydown']
+            listeners: ['click'],
+            ...options
         })
     }
 
@@ -15,12 +16,25 @@ export class Board extends AppComponent {
         return createBoard()
     }
 
-    onClick() {
-      console.log('click')
+    onClick( event ) {
+        const clickedItem = getClickedItem( event.target )
+
+        clickedItem &&
+        this.emitter.emit('key:click', clickedItem )
     }
 
-    onKeydown( event ) {
-        const {key} = event
-        console.log( key )
+}
+
+function getClickedItem( targetElement ) {
+
+    if ( targetElement.classList.contains('key') ) {
+        return targetElement
     }
+
+    const parentElement = targetElement.parentElement
+    if ( parentElement.classList.contains('key') )  {
+        return parentElement
+    }
+
+    return null
 }
