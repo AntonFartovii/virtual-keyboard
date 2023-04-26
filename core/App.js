@@ -8,7 +8,7 @@ export class App {
     }
 
     getRoot() {
-      const $root = $.create('div', 'virtual-board')
+      const $root = $.create('div', 'board-container')
 
       this.components = this.components.map(Component => {
         const $el = $.create('div', Component.className)

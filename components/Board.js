@@ -1,4 +1,5 @@
 import {AppComponent} from "../core/AppComponent.js";
+import {createBoard} from "./BoardBuilder.js";
 
 
 export class Board extends AppComponent {
@@ -6,18 +7,20 @@ export class Board extends AppComponent {
 
     constructor($root) {
         super($root, {
-            listeners: ['click']
+            listeners: ['click', 'keydown']
         })
     }
 
     toHTML() {
-        return 'i am input-area'
+        return createBoard()
     }
 
     onClick() {
       console.log('click')
     }
 
-
-
+    onKeydown( event ) {
+        const {key} = event
+        console.log( key )
+    }
 }

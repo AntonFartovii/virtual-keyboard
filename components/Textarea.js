@@ -6,7 +6,7 @@ export class Textarea extends AppComponent {
 
     constructor($root) {
         super($root, {
-            listeners: ['click']
+            listeners: ['click', 'keydown']
         })
     }
 
@@ -18,6 +18,8 @@ export class Textarea extends AppComponent {
         console.log('click')
     }
 
-
-
+    onKeydown( event ) {
+        const {key} = event
+        console.log( key )
+    }
 }
