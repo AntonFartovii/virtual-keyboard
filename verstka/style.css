@@ -1,3 +1,6 @@
+* {
+  box-sizing: border-box;
+}
 
 .app-container {
   max-width: 1280px;
@@ -30,6 +33,105 @@
 }
 
 .input-area {
-  width: 100%;
   display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.key {
+  position: relative;
+  cursor: pointer;
+  min-width: 40px;
+  height: 40px;
+  border: 1px solid #f1f1f1;
+  display: flex;
+  align-items: flex-end;
+  flex-direction: row;
+  justify-content: flex-end;
+  font-size: 20px;
+  font-weight: bold;
+  color: #333333;
+  background-color: #FFFFFF;
+  border-radius: 5px;
+  margin: 5px;
+  padding: 5px;
+  transition: all 0.2s ease-in-out;
+}
+
+.key .shift-value {
+  position: absolute;
+  left: 10%;
+  top: 10%;
+  font-size: 12px;
+}
+
+.tab, .backspace, .caps-lock, .enter, .shift, .control, .alt, .spacebar {
+  background-color: #EEEEEE;
+  color: #666666;
+  font-size: 16px;
+  font-weight: normal;
+}
+
+.tab, .alt-gr {
+  width: 75px;
+}
+
+.spacebar {
+  width: 383px;
+}
+
+.empty {
+  width: 75px;
+}
+
+/* Стили для специфических клавиш */
+.backspace {
+  width: 100px;
+}
+
+.caps-lock, .shift {
+  width: 125px;
+}
+
+.enter, .control {
+  width: 75px;
+}
+
+.alt {
+  width: 50px;
+}
+
+/* Стили для активных клавиш */
+.key:active {
+  background-color: #CCCCCC;
+}
+
+/* Стили для зажатых клавиш */
+.key.active {
+  background-color: #CCCCCC;
+}
+
+/* Стили для зажатых функциональных клавиш */
+.caps-lock.active, .shift.active, .control.active, .alt.active {
+  background-color: #999999;
+  color: #FFFFFF;
+}
+
+/* Стили для зажатой клавиши пробела */
+.spacebar.active {
+  background-color: #999999;
+  color: #FFFFFF;
+}
+
+.windows img {
+  width: 15px;
 }
