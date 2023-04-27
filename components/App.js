@@ -6,13 +6,15 @@ export class App {
     constructor(selector, options) {
       this.$appContainer = $(selector)
       this.components = options.components || []
+      this.store = options.store
       this.emitter = new Emitter()
     }
 
     getRoot() {
 
       const componentOptions = {
-        emitter: this.emitter
+        emitter: this.emitter,
+        store: this.store
       }
       const $root = $.create('div', 'board-container')
 

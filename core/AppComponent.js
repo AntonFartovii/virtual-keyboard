@@ -5,6 +5,7 @@ export class AppComponent extends DomListener {
         super($root, options.listeners)
         this.name = options.name || ''
         this.emitter = options.emitter
+        this.store = options.store
     }
 
     toHTML() {
