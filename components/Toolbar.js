@@ -1,4 +1,5 @@
 import {AppComponent} from "../core/AppComponent.js";
+import {$} from "../core/dom.js";
 
 export class Toolbar extends AppComponent {
     static className = 'toolbar-area'
@@ -14,12 +15,17 @@ export class Toolbar extends AppComponent {
         super.init();
     }
 
-    onClick() {
-
+    onClick( event ) {
+        if (event.target.classList.contains('lang')) {
+            const $el = $(event.target)
+            console.log($el)
+            $el && $el.toggleClass('active')
+        }
     }
 
 
     toHTML() {
-        return '<div class="lang lang-ru">RU</div><div class="lang lang-en">EN</div>'
+        return `<div class="lang lang-ru">RU</div>
+            <div class="lang lang-en">EN</div>`
     }
 }

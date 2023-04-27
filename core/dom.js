@@ -34,6 +34,26 @@ class Dom {
         }
         return this.$el.outerHTML.trim()
     }
+
+    find(selector) {
+        return $(this.$el.querySelector(selector))
+    }
+
+    addClass(className) {
+        this.$el.classList.add(className)
+        return this
+    }
+
+    removeClass(className) {
+        this.$el.classList.remove(className)
+        return this
+    }
+
+    toggleClass(className) {
+        this.$el.classList.contains(className)
+        ?  this.$el.classList.remove(className)
+        :  this.$el.classList.add(className)
+    }
 }
 
 export function $(selector) {

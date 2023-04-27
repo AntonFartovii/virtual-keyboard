@@ -12,15 +12,36 @@ export class Board extends AppComponent {
         })
     }
 
+    init() {
+        super.init();
+        this.$on('Textarea:keydown', this.keyHandle.bind(this))
+        this.$on('Textarea:keyup', this.keyHandle.bind(this))
+    }
+
+    keyHandle( event ) {
+
+        const $key = this.$root.find(`[data-keycode='${event.keyCode}']`)
+
+        console.log( event )
+        if ( event.keyCode == '20') {
+            if (event.type === 'keyup') {
+                $key.toggleClass('active')
+            }
+            return
+        }
+
+        event.type === 'keydown'
+            ? $key.addClass('active')
+            : $key.removeClass('active')
+    }
+
     toHTML() {
         return createBoard()
     }
 
     onClick( event ) {
         const clickedItem = getClickedItem( event.target )
-
-        clickedItem &&
-        this.emitter.emit('key:click', clickedItem )
+        clickedItem && this.$emit('board:click', clickedItem )
     }
 
 }
@@ -38,3 +59,4 @@ function getClickedItem( targetElement ) {
 
     return null
 }
+

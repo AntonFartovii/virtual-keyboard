@@ -15,10 +15,13 @@ function toRowHTML( rowData ) {
 }
 
 function toKeyHTML( data ) {
-    let {en: keyData, className} = data
+    let {en: keyData, className, keyCode} = data
     className = className ? ('key ' + className) : 'key'
     return `
-        <div class="${className.toLowerCase()}" data-value="${keyData.value}" data-shift-value="${keyData.shiftValue}">
+        <div class="${className.toLowerCase()}" 
+            data-keycode="${keyCode}"
+            data-value="${keyData.value.toLowerCase()}" 
+            data-shift-value="${keyData.shiftValue.toLowerCase()}">
           <div class="value">${keyData.value}</div>
           <div class="shift-value">${keyData.shiftValue}</div>
         </div>`

@@ -6,17 +6,33 @@ export class AppComponent extends DomListener {
         this.name = options.name || ''
         this.emitter = options.emitter
         this.store = options.store
+        this.unsubscribers = []
+        this.prepare()
+    }
+
+    prepare() {
+
+    }
+
+    $on(event, fn) {
+      const unsub = this.emitter.subscribe(event, fn)
+      this.unsubscribers.push(unsub)
+    }
+
+    $emit(event, ...args) {
+      this.emitter.emit(event, ...args)
     }
 
     toHTML() {
-        return ''
+      return ''
     }
 
     init() {
-        this.initDOMListeners()
+      this.initDOMListeners()
     }
 
-    destroy() {
-        this.removeDOMListeners()
+destroy() {
+      this.removeDOMListeners()
+      this.unsubscribers.forEach( unsub => unsub())
     }
 }
