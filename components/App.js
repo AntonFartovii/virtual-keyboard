@@ -31,13 +31,13 @@ export class App {
     }
 
     render() {
-        const appHtml = this.getRoot()
-        this.$appContainer.append( appHtml )
-        this.components.forEach( component => component.init() )
+      const appHtml = this.getRoot()
+      this.$appContainer.append( appHtml )
+      this.components.forEach( component => component.init() )
     }
 
     destroy() {
-        this.components.forEach( component => component.destroy())
+      this.components.forEach( component => component.destroy())
     }
 }
 

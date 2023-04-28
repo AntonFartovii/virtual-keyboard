@@ -39,6 +39,10 @@ class Dom {
         return $(this.$el.querySelector(selector))
     }
 
+    findAll(selector) {
+        return this.$el.querySelectorAll(selector)
+    }
+
     addClass(className) {
         this.$el.classList.add(className)
         return this
@@ -53,6 +57,14 @@ class Dom {
         this.$el.classList.contains(className)
         ?  this.$el.classList.remove(className)
         :  this.$el.classList.add(className)
+    }
+
+    containClass(className) {
+        return this.$el.classList.contains(className)
+    }
+
+    get data() {
+        return this.$el.dataset
     }
 }
 

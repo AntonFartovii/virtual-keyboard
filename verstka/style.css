@@ -3,7 +3,7 @@
 }
 
 .app-container {
-  max-width: 1280px;
+  max-width: 850px;
   margin: 0 auto;
 }
 
@@ -27,18 +27,21 @@
   flex-wrap: nowrap;
   justify-content: flex-end;
   width: 100%;
+  margin: 10px 0;
 }
 
 .toolbar-area .lang {
   cursor: pointer;
-  padding: 2px;
+  padding: 3px;
+  margin: 3px;
+  border-radius: 3px;
 }
 
 .toolbar-area .lang.active {
-  box-shadow: #999999;
-  background-color: #e1e1e1;
+  background-color: #1baa2d;
+  color: #fff;
+  box-shadow: 0px 0px 5px rgba(0,0,0,1);
 }
-
 
 .output-area textarea {
   padding: 10px;
@@ -49,6 +52,10 @@
   resize: both;
   width: 100%;
   height: 200px;
+}
+
+.output-area textarea:focus-visible {
+  border-color: unset;
 }
 
 .input-area {
@@ -91,6 +98,7 @@
 .key * {
   z-index: 9;
 }
+
 .key .shift-value {
   position: absolute;
   left: 10%;

@@ -1,6 +1,6 @@
 import {keyboard} from "../data/keyboard.js";
 
-export function createBoard() {
+export function createBoard( lang ) {
     let html = []
     let rowHtml = []
     for ( let row in keyboard ) {
@@ -8,21 +8,31 @@ export function createBoard() {
         html.push( `<div class="row" data-row="${row}">${rowHtml.join('')}</div>` )
     }
     return html.join('')
-}
 
-function toRowHTML( rowData ) {
-    return rowData.map( toKeyHTML )
-}
+    function toRowHTML( rowData ) {
+        return rowData.map( toKeyHTML )
+    }
 
-function toKeyHTML( data ) {
-    let {en: keyData, className, keyCode} = data
-    className = className ? ('key ' + className) : 'key'
-    return `
+    function toKeyHTML( data ) {
+        let {[lang]: keyData, className, keyCode, code, location} = data
+        className = className ? ('key ' + className) : 'key'
+        return `
         <div class="${className.toLowerCase()}" 
             data-keycode="${keyCode}"
+            data-code="${code}"
+            data-location="${location}"
             data-value="${keyData.value.toLowerCase()}" 
             data-shift-value="${keyData.shiftValue.toLowerCase()}">
-          <div class="value">${keyData.value}</div>
-          <div class="shift-value">${keyData.shiftValue}</div>
+          <div class="value">
+            ${keyData.value}
+          </div>
+          <div class="shift-value">
+            ${keyData.shiftValue}
+          </div>
         </div>`
+    }
 }
+
+
+
+

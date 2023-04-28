@@ -1,49 +1,88 @@
 import {AppComponent} from "../core/AppComponent.js";
 import {createBoard} from "./BoardBuilder.js";
-
+import {storage} from "../core/utils.js";
+import * as actions from '../store/actions.js'
 
 export class Board extends AppComponent {
-    static className = 'input-area'
+  static className = 'input-area'
 
-    constructor($root, options) {
-        super($root, {
-            listeners: ['click'],
-            ...options
-        })
+  constructor($root, options) {
+    super($root, {
+      listeners: ['click'],
+      ...options
+    })
+  }
+
+  init() {
+    super.init();
+    this.$on('Textarea:keydown', this.keyHandle.bind(this))
+    this.$on('Textarea:keyup', this.keyHandle.bind(this))
+    this.$on('Toolbar:ChangeLang', this.render.bind(this))
+    this.initCapslock()
+  }
+
+  keyHandle( event ) {
+    const $key = this.$root.find(`[data-keycode='${event.keyCode}']`)
+
+    if (event.shiftKey && event.altKey) {
+      if (event.code === 'KeyE') {
+        this.$emit('Board:ChangeLang', 'en')
+      }
+      if (event.code === 'KeyR') {
+        this.$emit('Board:ChangeLang', 'ru')
+      }
     }
 
-    init() {
-        super.init();
-        this.$on('Textarea:keydown', this.keyHandle.bind(this))
-        this.$on('Textarea:keyup', this.keyHandle.bind(this))
+    if ( event.type === 'keyup') {
+      if (event.keyCode == '20') {
+        this.switchCapslock()
+        return
+      }
+    }
+    if ( event.type === 'keydown') {
+      if (event.keyCode == '9') {
+        event.preventDefault()
+      }
     }
 
-    keyHandle( event ) {
+    event.type === 'keydown'
+    ? $key.addClass('active')
+    : $key.removeClass('active')
+  }
 
-        const $key = this.$root.find(`[data-keycode='${event.keyCode}']`)
+  toHTML( lang ) {
+    lang = lang || storage('keyboard-state').lang
+    return createBoard( lang )
+  }
 
-        console.log( event )
-        if ( event.keyCode == '20') {
-            if (event.type === 'keyup') {
-                $key.toggleClass('active')
-            }
-            return
-        }
+  render( lang ) {
+    const html = this.toHTML( lang )
+    this.$root.html( html )
+    this.initCapslock()
+  }
 
-        event.type === 'keydown'
-            ? $key.addClass('active')
-            : $key.removeClass('active')
-    }
+  onClick( event ) {
+    const clickedKey = getClickedItem( event.target )
+    clickedKey && this.$emit('board:click', clickedKey )
+    this.keyEffect( clickedKey )
+  }
 
-    toHTML() {
-        return createBoard()
-    }
+  keyEffect( clickedKey ) {
+    const keyCode = clickedKey && clickedKey.dataset.keycode
+    keyCode === '20' && this.switchCapslock()
+  }
 
-    onClick( event ) {
-        const clickedItem = getClickedItem( event.target )
-        clickedItem && this.$emit('board:click', clickedItem )
-    }
+  switchCapslock() {
+    this.$dispatch(actions.switchCapslock())
+    this.initCapslock()
+  }
 
+  initCapslock() {
+    const $capslock = this.$root.find(`[data-keycode="20"`)
+    storage('keyboard-state').capslock
+    ? $capslock.addClass('active')
+    : $capslock.removeClass('active')
+  }
 }
 
 function getClickedItem( targetElement ) {
