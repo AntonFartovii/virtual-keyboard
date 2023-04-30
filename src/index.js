@@ -5,6 +5,7 @@ import {storage} from "./core/utils.js";
 import {Toolbar} from "./components/Toolbar.js";
 import {createStore} from "./core/store.js";
 import {rootReducer} from "./store/rootReducer.js";
+import './style.css'
 
 const defaultState = {
   lang: 'en',
