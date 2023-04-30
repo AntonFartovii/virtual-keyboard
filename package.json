@@ -3,10 +3,10 @@
   "version": "1.0.0",
   "description": "Компоненты:  \r - toolbar, отображение настроек\r - textarea, отображение вводимого текста\r - клавиатура, ввод текста управлением мышью",
   "main": "webpack.config.js",
-  "type": "module",
   "scripts": {
     "start": "webpack --mode=development",
-    "build": "webpack --mode=prodгction"
+    "build": "webpack --mode=production",
+    "eslint": "eslint webpack.config.js src"
   },
   "repository": {
     "type": "git",
@@ -20,9 +20,10 @@
   },
   "homepage": "https://github.com/AntonFartovii/RSS-Virtual-Keyboard#readme",
   "devDependencies": {
-    "copy-webpack-plugin": "^11.0.0",
+    "clean-webpack-plugin": "^4.0.0",
     "css-loader": "^6.7.3",
     "eslint": "^8.39.0",
+    "eslint-config-google": "^0.14.0",
     "eslint-webpack-plugin": "^4.0.1",
     "html-webpack-plugin": "^5.5.1",
     "mini-css-extract-plugin": "^2.7.5",
