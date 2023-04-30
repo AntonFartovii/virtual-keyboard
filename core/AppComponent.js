@@ -6,12 +6,10 @@ export class AppComponent extends DomListener {
     this.name = options.name || ''
     this.emitter = options.emitter
     this.store = options.store
+    this.data = options.data
     this.unsubscribers = []
     this.storeSub = null
-    this.prepare()
   }
-
-  prepare() {}
 
   $dispatch(action) {
     this.store.dispatch(action)

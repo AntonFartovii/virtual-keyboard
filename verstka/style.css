@@ -1,9 +1,11 @@
 * {
   box-sizing: border-box;
+  margin: 0px;
+  padding: 0px;
 }
 
 .app-container {
-  max-width: 850px;
+  width: 100%;
   margin: 0 auto;
 }
 
@@ -12,41 +14,46 @@
   width: 100%;
   flex-direction: column;
   flex-wrap: nowrap;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
+  height: 100vh;
 }
 
-.output-area {
+section {
+  width: 100%;
+}
+
+.section-output {
   display: flex;
   width: 100%;
 }
 
-.toolbar-area {
+.section-toolbar {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
   justify-content: flex-end;
   width: 100%;
-  margin: 10px 0;
+  padding: 10px 0;
 }
 
-.toolbar-area .lang {
+.section-toolbar .lang {
   cursor: pointer;
   padding: 3px;
   margin: 3px;
   border-radius: 3px;
 }
 
-.toolbar-area .lang.active {
+.section-toolbar .lang.active {
   background-color: #1baa2d;
   color: #fff;
   box-shadow: 0px 0px 5px rgba(0,0,0,1);
 }
 
-.output-area textarea {
+.section-output  textarea {
   padding: 10px;
   border-radius: 5px;
-  /*border: 2px solid #ccc;*/
+  border: 2px solid green;
   font-size: 16px;
   font-family: Arial, sans-serif;
   resize: both;
@@ -54,14 +61,30 @@
   height: 200px;
 }
 
-.output-area textarea:focus-visible {
-  border-color: unset;
+.section-output  textarea:focus-visible {
+  border: 2px solid green;
+  outline: green 2px;
 }
 
-.input-area {
+.section-input  {
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
+  height: 100%;
+}
+
+.section-wrapper {
+  max-width: 850px;
+  margin: 0 auto;
+  width: 100%;
+  height: 100%;
+}
+
+.toolbar-wrapper {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-end;
 }
 
 .row {
@@ -99,11 +122,23 @@
   z-index: 9;
 }
 
+.key .value {
+  text-transform: lowercase;
+}
 .key .shift-value {
   position: absolute;
   left: 10%;
   top: 10%;
   font-size: 12px;
+}
+
+.shift-value.active {
+  font-size: 14px;
+  color: green;
+}
+
+.key-alphabet .value.active {
+  text-transform: uppercase;
 }
 
 .tab, .backspace, .capslock, .enter, .shift, .control, .alt, .spacebar {
