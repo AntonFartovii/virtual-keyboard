@@ -1,143 +1,166 @@
-import {AppComponent} from "../core/AppComponent.js";
-import {createBoard} from "./BoardBuilder.js";
-import {storage} from "../core/utils.js";
-import * as actions from '../store/actions.js'
+import {AppComponent} from '../core/AppComponent.js';
+import {createBoard} from './BoardBuilder.js';
+import {storage} from '../core/utils.js';
+import {getClickedItem} from '../core/utils.js';
 
 export class Board extends AppComponent {
-  static className = 'section-input'
+  static className = 'section-input';
 
   constructor($root, options) {
     super($root, {
-      listeners: ['click', 'keydown'],
-      ...options
-    })
+      listeners: ['mousedown', 'mouseup'],
+      ...options,
+    });
+    this.isShiftPressed = false;
+    this.isCapsPressed = false;
+    this.isEn = false;
+    this.mode = 'default';
   }
 
-  toHTML( ) {
-    const lang = storage('keyboard-state').lang
-    return createBoard( lang )
+  toHTML() {
+    const lang = storage('keyboard-state').lang;
+    return createBoard(lang);
   }
 
   render() {
-    const html = this.toHTML()
-    this.$root.html( html )
-    this.initCapslock()
+    this.$root.html(this.toHTML());
   }
 
-  onKeydown() {
-    super.onKeydown();
+  onMousedown(event) {
+    this.keyHandler(event);
+    this.$emit('Textarea:focus');
   }
 
-  onClick( event ) {
-    const clickedKey = getClickedItem( event.target )
-    const value = this.getKeyValue( clickedKey )
-    clickedKey && this.$emit('Board:click', value )
-    this.keyEffect( clickedKey )
-    this.$emit('Textarea:focus')
-  }
-
-  keyEffect( clickedKey ) {
-    const keyCode = clickedKey && clickedKey.dataset.keycode
-    keyCode === '20' && this.switchCapslock()
+  onMouseup(event) {
+    this.keyHandler(event);
+    this.$emit('Textarea:focus');
   }
 
   init() {
     super.init();
-    this.$on('Textarea:keydown', this.keyDownHandle.bind(this))
-    this.$on('Textarea:keyup', this.keyUpHandle.bind(this))
-    this.$on('Toolbar:ChangeLang', this.render.bind(this))
-    this.initCapslock()
+    this.initLanguage();
+    this.$on('Textarea:keydown', this.keyHandler.bind(this));
+    this.$on('Textarea:keyup', this.keyHandler.bind(this));
+    this.$on('Toolbar:ChangeLang', this.render.bind(this));
   }
 
-  keyDownHandle( event ) {
-    const $key = this.$root.find(`[data-code='${event.code}']`)
-    event.code !== 'CapsLock' && $key.addClass('active')
+  keyHandler(event) {
+    if (!event) return;
+    const isBoardEvent = ['mousedown', 'mouseup'].includes(event.type);
+    const isDownEvent = ['mousedown', 'keydown'].includes(event.type);
 
-    this.switchLanguage( event )
-
-    const value = this.getKeyValue( $key.$el, event )
-
-    this.$emit('Board:value', value)
-
-    event.shiftKey === true && this.toUpperCase( true )
+    const $key = isBoardEvent ?
+        getClickedItem(event.target) :
+        this.$root.find(`[data-code='${event.code}']`);
+    if (!$key) return;
+    const code = $key && $key.data.code;
+    isBoardEvent && (event.code = code);
+    isDownEvent ?
+        this.keyDownHandle($key, event) :
+        this.keyUpHandle($key, event);
+    this.switchKeyBoard();
   }
 
-  keyUpHandle( event ) {
-    const $key = this.$root.find(`[data-code='${event.code}']`)
-
-    event.code === 'CapsLock'
-        ? this.switchCapslock()
-        : $key.removeClass('active')
-    event.shiftKey === false && this.toUpperCase( false )
+  keyDownHandle($key, event) {
+    event.code.toLowerCase().includes('shift') && (this.isShiftPressed = true);
+    event.code.toLowerCase().includes('shift') && this.switchShiftMode(true);
+    event.code === 'CapsLock' ?
+        this.switchCapsMode() :
+        $key.addClass('active');
+    const value = this.getKeyValue($key.$el, event);
+    this.$emit('Board:value', value);
+    this.switchLanguage(event);
   }
 
-  getKeyValue( clickedKey, event = {}) {
-    const type = clickedKey && clickedKey.dataset.type
-    const shiftValue = clickedKey && clickedKey.dataset.shiftValue
-    let value = null
+  keyUpHandle($key, event) {
+    event.code.toLowerCase().includes('shift') && (this.isShiftPressed = false);
+    event.code !== 'CapsLock' && $key.removeClass('active');
+    this.isShiftPressed === false && this.switchShiftMode(false);
+  }
+
+  getKeyValue(clickedKey, event = {}) {
+    const type = clickedKey && clickedKey.dataset.type;
+    const shiftValue = clickedKey && clickedKey.dataset.shiftValue;
+    let value = clickedKey.dataset.value;
     if (type === 'alphabet') {
-      value = clickedKey.dataset.value
-      if ( event.shiftKey === true ) {
-        if ( shiftValue ) value = shiftValue
-        value = value.toUpperCase()
+      if (this.mode === 'shift') {
+        value = shiftValue ? shiftValue : value.toUpperCase();
+      }
+      if (this.mode === 'capslock') {
+        value = value.toUpperCase();
       }
     }
-    if (type === 'service') value = clickedKey.dataset.code
-    return value
+    if (type === 'service') value = clickedKey.dataset.code;
+    return value;
   }
 
-  toUpperCase( condition ) {
-    const keysForUp = this.$root.findAll('.key-alphabet .value')
-    keysForUp.forEach( key => {
-      condition
-          ? key.classList.add('active')
-          : key.classList.remove('active')
-    })
-    const keysSpecial = this.$root.findAll('.key-special .shift-value')
-    keysSpecial.forEach( key => {
-      condition
-          ? key.classList.add('active')
-          : key.classList.remove('active')
-    })
+  switchShiftMode() {
+    if (this.isShiftPressed) {
+      this.mode = 'shift';
+    } else if (this.isCapsPressed) {
+      this.mode = 'capslock';
+    } else {
+      this.mode = 'default';
+    }
+    this.switchKeyBoard();
   }
 
-  switchCapslock() {
-    this.$dispatch(actions.switchCapslock())
-    this.initCapslock()
+  switchCapsMode() {
+    this.isCapsPressed = !this.isCapsPressed;
+    const $capslock = this.$root.find(`[data-keycode="20"`);
+    this.isCapsPressed ?
+        $capslock.addClass('active') :
+        $capslock.removeClass('active');
+
+    if (this.isCapsPressed) {
+      this.mode = 'capslock';
+    } else if (this.isShiftPressed) {
+      this.mode = 'shift';
+    } else {
+      this.mode = 'default';
+    }
+    this.switchKeyBoard();
   }
 
-  switchLanguage( event ) {
-  if (event.shiftKey && event.altKey) {
-    this.toUpperCase( false )
-    if (event.code === 'KeyE') {
-            this.$emit('Board:ChangeLang', 'en')
-        }
-        if (event.code === 'KeyR') {
-            this.$emit('Board:ChangeLang', 'ru')
-        }
-    return
+  switchKeyBoard() {
+    if (this.mode === 'shift') {
+      this.toggleKeysMode('.key-alphabet .default', false);
+      this.toggleKeysMode('.key-alphabet .caps-mode', false);
+      this.toggleKeysMode('.key-alphabet .shift-mode', true);
+    }
+    if (this.mode === 'capslock') {
+      this.toggleKeysMode('.key-alphabet .default', false);
+      this.toggleKeysMode('.key-alphabet .shift-mode', false);
+      this.toggleKeysMode('.key-alphabet .caps-mode', true);
+    }
+    if (this.mode === 'default') {
+      this.toggleKeysMode('.key-alphabet .shift-mode', false);
+      this.toggleKeysMode('.key-alphabet .caps-mode', false);
+      this.toggleKeysMode('.key-alphabet .default', true);
     }
   }
 
-  initCapslock() {
-    const $capslock = this.$root.find(`[data-keycode="20"`)
-    storage('keyboard-state').capslock
-    ? $capslock.addClass('active')
-    : $capslock.removeClass('active')
+  toggleKeysMode(selector, condition) {
+    const items = this.$root.findAll(selector);
+    items.forEach((item) => {
+      condition ?
+          item.classList.add('active') :
+          item.classList.remove('active');
+    });
   }
-}
 
-function getClickedItem( targetElement ) {
-
-    if ( targetElement.classList.contains('key') ) {
-        return targetElement
+  switchLanguage(event) {
+    if (event.ctrlKey && event.altKey) {
+      this.isEn ?
+        this.$emit('Board:ChangeLang', 'ru') :
+        this.$emit('Board:ChangeLang', 'en');
+      this.isEn = !this.isEn;
     }
+  }
 
-    const parentElement = targetElement.parentElement
-    if ( parentElement.classList.contains('key') )  {
-        return parentElement
-    }
-
-    return null
+  initLanguage() {
+    const currentLang = storage('keyboard-state').lang;
+    this.isEn = currentLang === 'en';
+  }
 }
 

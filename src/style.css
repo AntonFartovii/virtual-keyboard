@@ -84,6 +84,14 @@ section {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.toolbar-wrapper .lang-icons {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
   justify-content: flex-end;
 }
 
@@ -122,14 +130,61 @@ section {
   z-index: 9;
 }
 
+.key:active {
+  background-color: #CCCCCC;
+}
+
+.key.active {
+  background-color: #CCCCCC;
+}
+
+.keys-shift-mode .shift-mode {
+  display: block;
+}
+
+.keys-shift-mode .default {
+  display: none;
+}
+
+.key .default {
+  display: none;
+}
+
+.key .default.active {
+
+  display: flex;
+}
+
+.key .shift-mode.active {
+  display: flex;
+}
+
+.key .shift-mode {
+  display: none;
+}
+
 .key .value {
   text-transform: lowercase;
 }
+
 .key .shift-value {
+  display: block;
   position: absolute;
   left: 10%;
   top: 10%;
   font-size: 12px;
+}
+
+.key .shift-value.active {
+  display: none;
+}
+
+.key .caps-mode {
+  display: none;
+}
+
+.key .caps-mode.active {
+  display: flex;
 }
 
 .shift-value.active {
@@ -189,14 +244,10 @@ section {
   background: #9bb3ea
 }
 /* Стили для активных клавиш */
-.key:active {
-  background-color: #CCCCCC;
-}
+
 
 /* Стили для зажатых клавиш */
-.key.active {
-  background-color: #CCCCCC;
-}
+
 
 /* Стили для зажатых функциональных клавиш */
 .capslock.active, .shift.active, .control.active, .alt.active {
