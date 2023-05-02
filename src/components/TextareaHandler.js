@@ -20,13 +20,24 @@ export function textareaHandler(value, textarea) {
       setValue(cb, 1);
     },
     Backspace: () => {
-      const cursorPosition = textarea.selectionStart;
-      if (textarea.value.length > 0 && cursorPosition > 0) {
-        const cb = (cursorPosition) =>
-          textarea.value.slice(0, cursorPosition - 1) +
-          textarea.value.slice(cursorPosition);
-        setValue(cb, -1);
+      const posStart = textarea.selectionStart;
+      const posEnd = textarea.selectionEnd;
+      if (posStart === posEnd) {
+        if (textarea.value.length > 0 && posStart > 0) {
+          const cb = (posStart) =>
+              textarea.value.slice(0, posStart - 1) +
+              textarea.value.slice(posStart);
+          setValue(cb, -1);
+        }
+      } else {
+        if (textarea.value.length > 0 && posStart >= 0) {
+          const cb = (posStart) =>
+              textarea.value.slice(0, posStart) +
+              textarea.value.slice(posEnd);
+          setValue(cb, 0);
+        }
       }
+
     },
     Tab: () => {
       const cb = (cursorPosition) =>
@@ -37,12 +48,20 @@ export function textareaHandler(value, textarea) {
     CapsLock: () => {
     },
     Delete: () => {
-      const cursorPosition = textarea.selectionStart;
-      if (textarea.value.length > 0 && cursorPosition < textarea.value.length) {
-        const cb = (cursorPosition) =>
-          textarea.value.slice(0, cursorPosition) +
-          textarea.value.slice(cursorPosition + 1);
-        setValue(cb, 0);
+      const posStart = textarea.selectionStart;
+      const posEnd = textarea.selectionEnd;
+      if (textarea.value.length > 0 && posStart < textarea.value.length) {
+        if (posStart === posEnd) {
+          const cb = (posStart) =>
+              textarea.value.slice(0, posStart) +
+              textarea.value.slice(posStart + 1);
+          setValue(cb, 0);
+        } else {
+          const cb = (posStart) =>
+              textarea.value.slice(0, posStart) +
+              textarea.value.slice(posEnd);
+          setValue(cb, 0);
+        }
       }
     },
     Enter: () => {
