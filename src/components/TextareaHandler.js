@@ -25,19 +25,18 @@ export function textareaHandler(value, textarea) {
       if (posStart === posEnd) {
         if (textarea.value.length > 0 && posStart > 0) {
           const cb = (posStart) =>
-              textarea.value.slice(0, posStart - 1) +
-              textarea.value.slice(posStart);
+            textarea.value.slice(0, posStart - 1) +
+            textarea.value.slice(posStart);
           setValue(cb, -1);
         }
       } else {
         if (textarea.value.length > 0 && posStart >= 0) {
           const cb = (posStart) =>
-              textarea.value.slice(0, posStart) +
-              textarea.value.slice(posEnd);
+            textarea.value.slice(0, posStart) +
+            textarea.value.slice(posEnd);
           setValue(cb, 0);
         }
       }
-
     },
     Tab: () => {
       const cb = (cursorPosition) =>
@@ -53,13 +52,13 @@ export function textareaHandler(value, textarea) {
       if (textarea.value.length > 0 && posStart < textarea.value.length) {
         if (posStart === posEnd) {
           const cb = (posStart) =>
-              textarea.value.slice(0, posStart) +
-              textarea.value.slice(posStart + 1);
+            textarea.value.slice(0, posStart) +
+            textarea.value.slice(posStart+1);
           setValue(cb, 0);
         } else {
           const cb = (posStart) =>
-              textarea.value.slice(0, posStart) +
-              textarea.value.slice(posEnd);
+            textarea.value.slice(0, posStart) +
+            textarea.value.slice(posEnd);
           setValue(cb, 0);
         }
       }
