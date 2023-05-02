@@ -39,7 +39,7 @@ export class App {
   }
 
   toHTML() {
-    this.$body = $('body').append(this.$appContainer)
+    this.$body = $('body').append(this.$appContainer);
   }
 }
 

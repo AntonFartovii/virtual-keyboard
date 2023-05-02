@@ -24,6 +24,7 @@ export class Board extends AppComponent {
 
   render() {
     this.$root.html(this.toHTML());
+    this.initCapslock();
   }
 
   onMousedown(event) {
@@ -173,6 +174,14 @@ export class Board extends AppComponent {
         this.$emit('Board:ChangeLang', 'ru') :
         this.$emit('Board:ChangeLang', 'en');
       this.isEn = !this.isEn;
+    }
+    this.initCapslock();
+  }
+
+  initCapslock() {
+    if (this.isCapsPressed === true) {
+      const $capslock = this.$root.find(`[data-keycode="20"`);
+      $capslock.addClass('active');
     }
   }
 
