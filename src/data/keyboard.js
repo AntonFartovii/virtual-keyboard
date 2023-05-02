@@ -4,7 +4,7 @@ export const keyboard = {
     {
       en: {value: '`', shiftValue: '~'},
       ru: {value: 'ё', shiftValue: ''},
-      className: 'key-alphabet key-special',
+      className: 'key-alphabet key-special ',
       code: 'Backquote',
       type: 'alphabet',
       location: 0,

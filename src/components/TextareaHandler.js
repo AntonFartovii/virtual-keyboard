@@ -96,6 +96,11 @@ export function textareaHandler(value, textarea) {
         }
         textarea.selectionStart = newCursorPosition;
         textarea.selectionEnd = newCursorPosition;
+      } else {
+        const newCursorPosition =
+            cursorPosition + nextLineLength + 1;
+        textarea.selectionStart = newCursorPosition;
+        textarea.selectionEnd = newCursorPosition;
       }
     },
     ShiftLeft: () => {

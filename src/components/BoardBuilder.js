@@ -19,6 +19,9 @@ export function createBoard(lang) {
               ${keyData.shiftValue || keyData.value.toUpperCase()}
             </div>
             <div class="shift-value">${keyData.shiftValue}</div>
+            <div class="caps-shift-mode">
+              ${keyData.shiftValue || keyData.value.toLowerCase()}
+            </div>
         </div>`;
   }
 

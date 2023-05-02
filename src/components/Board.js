@@ -85,9 +85,15 @@ export class Board extends AppComponent {
     if (type === 'alphabet') {
       if (this.mode === 'shift') {
         value = shiftValue ? shiftValue : value.toUpperCase();
+        if (this.isCapsPressed) {
+          value = shiftValue ? shiftValue : value.toLowerCase();
+        }
       }
       if (this.mode === 'capslock') {
         value = value.toUpperCase();
+        if (this.isShiftPressed) {
+          value = shiftValue ? shiftValue : value.toLowerCase();
+        }
       }
     }
     if (type === 'service') value = clickedKey.dataset.code;
@@ -123,15 +129,24 @@ export class Board extends AppComponent {
   }
 
   switchKeyBoard() {
+    this.toggleKeysMode('.key-alphabet .caps-shift-mode', false);
     if (this.mode === 'shift') {
       this.toggleKeysMode('.key-alphabet .default', false);
       this.toggleKeysMode('.key-alphabet .caps-mode', false);
-      this.toggleKeysMode('.key-alphabet .shift-mode', true);
+      if (this.isCapsPressed) {
+        this.toggleKeysMode('.key-alphabet .caps-shift-mode', true);
+      } else {
+        this.toggleKeysMode('.key-alphabet .shift-mode', true);
+      }
     }
     if (this.mode === 'capslock') {
       this.toggleKeysMode('.key-alphabet .default', false);
       this.toggleKeysMode('.key-alphabet .shift-mode', false);
-      this.toggleKeysMode('.key-alphabet .caps-mode', true);
+      if (this.isShiftPressed) {
+        this.toggleKeysMode('.key-alphabet .caps-shift-mode', true);
+      } else {
+        this.toggleKeysMode('.key-alphabet .caps-mode', true);
+      }
     }
     if (this.mode === 'default') {
       this.toggleKeysMode('.key-alphabet .shift-mode', false);

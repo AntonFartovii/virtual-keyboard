@@ -150,6 +150,14 @@ section {
   display: none;
 }
 
+.key .caps-shift-mode {
+  display: none;
+}
+
+.key .caps-shift-mode.active {
+  display: flex;
+}
+
 .key .default.active {
 
   display: flex;
