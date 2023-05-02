@@ -45,6 +45,7 @@ export class Textarea extends AppComponent {
     this.$on('Board:value', this.handler.bind(this));
     this.$on('Board:click', this.handler.bind(this));
     this.$on('Textarea:focus', this.focus.bind(this));
+    this.$emit('Textarea:focus');
   }
 
   handler(value) {

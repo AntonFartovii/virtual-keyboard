@@ -99,8 +99,8 @@ export function textareaHandler(value, textarea) {
       } else {
         const newCursorPosition =
             cursorPosition + nextLineLength + 1;
-      textarea.selectionStart = newCursorPosition;
-      textarea.selectionEnd = newCursorPosition;
+        textarea.selectionStart = newCursorPosition;
+        textarea.selectionEnd = newCursorPosition;
       }
     },
     ShiftLeft: () => {
