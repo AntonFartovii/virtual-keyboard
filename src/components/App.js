@@ -30,8 +30,8 @@ export class App {
   render() {
     const appHtml = this.$root = this.getRoot();
     this.$appContainer.append(appHtml);
-    this.components.forEach((component) => component.init());
     this.toHTML();
+    this.components.forEach((component) => component.init());
   }
 
   destroy() {
@@ -39,20 +39,7 @@ export class App {
   }
 
   toHTML() {
-    const html = `<!doctype html>
-      <html lang="en">
-          <head><meta charset="UTF-8"><meta name="viewport" 
-          content="width=device-width, user-scalable=no, initial-scale=1.0, 
-          maximum-scale=1.0, minimum-scale=1.0">
-          <meta http-equiv="X-UA-Compatible" content="ie=edge">
-          <title>Document</title>
-          </head>
-          <body>
-          ${this.$appContainer.html()}
-          </div>
-          </body>
-          </html>`;
-    this.$body.html(html);
+    this.$body = $('body').append(this.$appContainer)
   }
 }
 

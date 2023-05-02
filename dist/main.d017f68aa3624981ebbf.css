@@ -1,0 +1,278 @@
+* {
+  box-sizing: border-box;
+  margin: 0px;
+  padding: 0px;
+}
+
+.app-container {
+  width: 100%;
+  margin: 0 auto;
+}
+
+.board-container {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: center;
+  height: 100vh;
+}
+
+section {
+  width: 100%;
+}
+
+.section-output {
+  display: flex;
+  width: 100%;
+}
+
+.section-toolbar {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-end;
+  width: 100%;
+  padding: 10px 0;
+}
+
+.section-toolbar .lang {
+  cursor: pointer;
+  padding: 3px;
+  margin: 3px;
+  border-radius: 3px;
+}
+
+.section-toolbar .lang.active {
+  background-color: #1baa2d;
+  color: #fff;
+  box-shadow: 0px 0px 5px rgba(0,0,0,1);
+}
+
+.section-output  textarea {
+  padding: 10px;
+  border-radius: 5px;
+  border: 2px solid green;
+  font-size: 16px;
+  font-family: Arial, sans-serif;
+  resize: both;
+  width: 100%;
+  height: 200px;
+}
+
+.section-output  textarea:focus-visible {
+  border: 2px solid green;
+  outline: green 2px;
+}
+
+.section-input  {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  height: 100%;
+}
+
+.section-wrapper {
+  max-width: 850px;
+  margin: 0 auto;
+  width: 100%;
+  height: 100%;
+}
+
+.toolbar-wrapper {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.toolbar-wrapper .lang-icons {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-end;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.key {
+  z-index: 10;
+  box-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+  position: relative;
+  cursor: pointer;
+  min-width: 40px;
+  height: 40px;
+  border: 1px solid #f1f1f1;
+  display: flex;
+  align-items: flex-end;
+  flex-direction: row;
+  justify-content: flex-end;
+  font-size: 20px;
+  font-weight: bold;
+  color: #333333;
+  background-color: #FFFFFF;
+  border-radius: 5px;
+  margin: 5px;
+  padding: 5px;
+  transition: all 0.2s ease-in-out;
+}
+
+.key * {
+  z-index: 9;
+}
+
+.key:active {
+  background-color: #CCCCCC;
+}
+
+.key.active {
+  background-color: #CCCCCC;
+}
+
+.keys-shift-mode .shift-mode {
+  display: block;
+}
+
+.keys-shift-mode .default {
+  display: none;
+}
+
+.key .default {
+  display: none;
+}
+
+.key .caps-shift-mode {
+  display: none;
+}
+
+.key .caps-shift-mode.active {
+  display: flex;
+}
+
+.key .default.active {
+
+  display: flex;
+}
+
+.key .shift-mode.active {
+  display: flex;
+}
+
+.key .shift-mode {
+  display: none;
+}
+
+.key .value {
+  text-transform: lowercase;
+}
+
+.key .shift-value {
+  display: block;
+  position: absolute;
+  left: 10%;
+  top: 10%;
+  font-size: 12px;
+}
+
+.key .shift-value.active {
+  display: none;
+}
+
+.key .caps-mode {
+  display: none;
+}
+
+.key .caps-mode.active {
+  display: flex;
+}
+
+.shift-value.active {
+  font-size: 14px;
+  color: green;
+}
+
+.key-alphabet .value.active {
+  text-transform: uppercase;
+}
+
+.tab, .backspace, .capslock, .enter, .shift, .control, .alt, .spacebar {
+  background-color: #EEEEEE;
+  color: #666666;
+  font-size: 16px;
+  font-weight: normal;
+}
+
+.tab, .alt-gr {
+  width: 75px;
+}
+
+.spacebar {
+  width: 383px;
+}
+
+.empty {
+  width: 75px;
+}
+
+/* Стили для специфических клавиш */
+.backspace {
+  width: 100px;
+}
+
+.capslock {
+  width: 95px;
+}
+.shift-left {
+  width: 125px;
+}
+
+
+
+.enter, .control-left {
+  width: 75px;
+}
+.control-right {
+
+}
+
+.alt {
+  width: 50px;
+}
+
+.arrow {
+  background: #9bb3ea
+}
+/* Стили для активных клавиш */
+
+
+/* Стили для зажатых клавиш */
+
+
+/* Стили для зажатых функциональных клавиш */
+.capslock.active, .shift.active, .control.active, .alt.active {
+  background-color: #999999;
+  color: #FFFFFF;
+}
+
+/* Стили для зажатой клавиши пробела */
+.spacebar.active {
+  background-color: #999999;
+  color: #FFFFFF;
+}
+
+.windows {
+  background-image: url(24cee601200bbfe9b313.svg);
+  background-size: 50%;
+  background-repeat: no-repeat;
+  background-position: 50%;
+}
+

@@ -14,6 +14,13 @@ const config = (env, args) => {
   const plugins = () => {
     const base = [
       new HtmlWebpackPlugin({
+        meta: {
+          'viewport': 'width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0',
+          'charset': 'UTF-8',
+          'http-equiv': {
+            'X-UA-Compatible': 'ie=edge'
+          }
+        },
         template: './index.html'
       }),
       new MiniCssExtractPlugin({
