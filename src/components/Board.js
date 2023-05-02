@@ -130,9 +130,11 @@ export class Board extends AppComponent {
 
   switchKeyBoard() {
     this.toggleKeysMode('.key-alphabet .caps-shift-mode', false);
+    this.toggleKeysMode('.key-alphabet .shift-value', false);
     if (this.mode === 'shift') {
       this.toggleKeysMode('.key-alphabet .default', false);
       this.toggleKeysMode('.key-alphabet .caps-mode', false);
+      this.toggleKeysMode('.key-alphabet .shift-value', true);
       if (this.isCapsPressed) {
         this.toggleKeysMode('.key-alphabet .caps-shift-mode', true);
       } else {
@@ -144,6 +146,7 @@ export class Board extends AppComponent {
       this.toggleKeysMode('.key-alphabet .shift-mode', false);
       if (this.isShiftPressed) {
         this.toggleKeysMode('.key-alphabet .caps-shift-mode', true);
+        this.toggleKeysMode('.key-alphabet .shift-value', true);
       } else {
         this.toggleKeysMode('.key-alphabet .caps-mode', true);
       }
