@@ -1,0 +1,282 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+<body>
+  <div id="app" class="app-container">
+    <div class="board-container">
+      <div class="output-area">
+        <textarea></textarea>
+      </div>
+        <div class="input-area">
+            <div class="row" data-row="1">
+            <div class="key" data-value="`" data-shift-value="~">
+                <div class="value">`</div>
+                <div class="shift-value">~</div>
+            </div>
+            <div class="key" data-value="1" data-shift-value="!">
+                <div class="value">1</div>
+                <div class="shift-value">!</div>
+            </div>
+            <div class="key" data-value="2" data-shift-value="@">
+                <div class="value">2</div>
+                <div class="shift-value">@</div>
+            </div>
+            <div class="key" data-value="3" data-shift-value="#">
+                <div class="value">3</div>
+                <div class="shift-value">#</div>
+            </div>
+            <div class="key" data-value="4" data-shift-value="$">
+                <div class="value">4</div>
+                <div class="shift-value">$</div>
+            </div>
+            <div class="key" data-value="5" data-shift-value="%">
+                <div class="value">5</div>
+                <div class="shift-value">%</div>
+            </div>
+            <div class="key" data-value="6" data-shift-value="^">
+                <div class="value">6</div>
+                <div class="shift-value">^</div>
+            </div>
+            <div class="key" data-value="7" data-shift-value="&amp;">
+                <div class="value">7</div>
+                <div class="shift-value">&amp;</div>
+            </div>
+            <div class="key" data-value="8" data-shift-value="*">
+                <div class="value">8</div>
+                <div class="shift-value">*</div>
+            </div>
+            <div class="key" data-value="9" data-shift-value="(">
+                <div class="value">9</div>
+                <div class="shift-value">(</div>
+            </div>
+            <div class="key" data-value="0" data-shift-value=")">
+                <div class="value">0</div>
+                <div class="shift-value">)</div>
+            </div>
+            <div class="key" data-value="-" data-shift-value="_">
+                <div class="value">-</div>
+                <div class="shift-value">_</div>
+            </div>
+            <div class="key" data-value="=" data-shift-value="+">
+                <div class="value">=</div>
+                <div class="shift-value">+</div>
+            </div>
+            <div class="key backspace" data-value="Backspace" data-shift-value="">
+                <div class="value">Backspace</div>
+                <div class="shift-value"></div>
+            </div></div><div class="row" data-row="2">
+            <div class="key tab" data-value="Tab" data-shift-value="">
+                <div class="value">Tab</div>
+                <div class="shift-value"></div>
+            </div>
+            <div class="key" data-value="q" data-shift-value="">
+                <div class="value">q</div>
+                <div class="shift-value"></div>
+            </div>
+            <div class="key" data-value="w" data-shift-value="">
+                <div class="value">w</div>
+                <div class="shift-value"></div>
+            </div>
+            <div class="key" data-value="e" data-shift-value="">
+                <div class="value">e</div>
+                <div class="shift-value"></div>
+            </div>
+            <div class="key" data-value="r" data-shift-value="">
+                <div class="value">r</div>
+                <div class="shift-value"></div>
+            </div>
+            <div class="key" data-value="t" data-shift-value="">
+                <div class="value">t</div>
+                <div class="shift-value"></div>
+            </div>
+            <div class="key" data-value="y" data-shift-value="">
+                <div class="value">y</div>
+                <div class="shift-value"></div>
+            </div>
+            <div class="key" data-value="u" data-shift-value="">
+                <div class="value">u</div>
+                <div class="shift-value"></div>
+            </div>
+            <div class="key" data-value="i" data-shift-value="">
+                <div class="value">i</div>
+                <div class="shift-value"></div>
+            </div>
+            <div class="key" data-value="o" data-shift-value="">
+                <div class="value">o</div>
+                <div class="shift-value"></div>
+            </div>
+            <div class="key" data-value="p" data-shift-value="">
+                <div class="value">p</div>
+                <div class="shift-value"></div>
+            </div>
+            <div class="key" data-value="[" data-shift-value="{">
+                <div class="value">[</div>
+                <div class="shift-value">{</div>
+            </div>
+            <div class="key" data-value="]" data-shift-value="}">
+                <div class="value">]</div>
+                <div class="shift-value">}</div>
+            </div>
+            <div class="key" data-value="\" data-shift-value="|">
+                <div class="value">\</div>
+                <div class="shift-value">|</div>
+            </div>
+            <div class="key delete" data-value="Del" data-shift-value="">
+                <div class="value">Del</div>
+                <div class="shift-value"></div>
+            </div></div><div class="row" data-row="3">
+            <div class="key capslock" data-value="CapsLock" data-shift-value="">
+                <div class="value">CapsLock</div>
+                <div class="shift-value"></div>
+            </div>
+            <div class="key" data-value="a" data-shift-value="">
+                <div class="value">a</div>
+                <div class="shift-value"></div>
+            </div>
+            <div class="key" data-value="s" data-shift-value="">
+                <div class="value">s</div>
+                <div class="shift-value"></div>
+            </div>
+            <div class="key" data-value="d" data-shift-value="">
+                <div class="value">d</div>
+                <div class="shift-value"></div>
+            </div>
+            <div class="key" data-value="f" data-shift-value="">
+                <div class="value">f</div>
+                <div class="shift-value"></div>
+            </div>
+            <div class="key" data-value="g" data-shift-value="">
+                <div class="value">g</div>
+                <div class="shift-value"></div>
+            </div>
+            <div class="key" data-value="h" data-shift-value="">
+                <div class="value">h</div>
+                <div class="shift-value"></div>
+            </div>
+            <div class="key" data-value="j" data-shift-value="">
+                <div class="value">j</div>
+                <div class="shift-value"></div>
+            </div>
+            <div class="key" data-value="k" data-shift-value="">
+                <div class="value">k</div>
+                <div class="shift-value"></div>
+            </div>
+            <div class="key" data-value="l" data-shift-value="">
+                <div class="value">l</div>
+                <div class="shift-value"></div>
+            </div>
+            <div class="key" data-value=";" data-shift-value=":">
+                <div class="value">;</div>
+                <div class="shift-value">:</div>
+            </div>
+            <div class="key" data-value="'" data-shift-value='"'>
+            <div class="value">'</div>
+            <div class="shift-value">"</div>
+        </div>
+            <div class="key enter" data-value="Enter" data-shift-value="">
+                <div class="value">Enter</div>
+                <div class="shift-value"></div>
+            </div></div><div class="row" data-row="4">
+        <div class="key shift shift-left" data-value="Shift" data-shift-value="">
+            <div class="value">Shift</div>
+            <div class="shift-value"></div>
+        </div>
+        <div class="key" data-value="z" data-shift-value="">
+            <div class="value">z</div>
+            <div class="shift-value"></div>
+        </div>
+        <div class="key" data-value="x" data-shift-value="">
+            <div class="value">x</div>
+            <div class="shift-value"></div>
+        </div>
+        <div class="key" data-value="c" data-shift-value="">
+            <div class="value">c</div>
+            <div class="shift-value"></div>
+        </div>
+        <div class="key" data-value="v" data-shift-value="">
+            <div class="value">v</div>
+            <div class="shift-value"></div>
+        </div>
+        <div class="key" data-value="b" data-shift-value="">
+            <div class="value">b</div>
+            <div class="shift-value"></div>
+        </div>
+        <div class="key" data-value="n" data-shift-value="">
+            <div class="value">n</div>
+            <div class="shift-value"></div>
+        </div>
+        <div class="key" data-value="m" data-shift-value="">
+            <div class="value">m</div>
+            <div class="shift-value"></div>
+        </div>
+        <div class="key" data-value="," data-shift-value="<">
+            <div class="value">,</div>
+            <div class="shift-value">&lt;</div>
+        </div>
+        <div class="key" data-value="." data-shift-value=">">
+            <div class="value">.</div>
+            <div class="shift-value">&gt;</div>
+        </div>
+        <div class="key" data-value="/" data-shift-value="?">
+            <div class="value">/</div>
+            <div class="shift-value">?</div>
+        </div>
+        <div class="key arrow arrow-up" data-value="↑" data-shift-value="">
+            <div class="value">↑</div>
+            <div class="shift-value"></div>
+        </div>
+        <div class="key shift shift-right" data-value="Shift" data-shift-value="">
+            <div class="value">Shift</div>
+            <div class="shift-value"></div>
+        </div></div><div class="row" data-row="5">
+        <div class="key control control-left" data-value="Ctrl" data-shift-value="">
+            <div class="value">Ctrl</div>
+            <div class="shift-value"></div>
+        </div>
+        <div class="key windows" data-value="" data-shift-value="">
+            <div class="value"></div>
+            <div class="shift-value"></div>
+        </div>
+        <div class="key alt" data-value="Alt" data-shift-value="">
+            <div class="value">Alt</div>
+            <div class="shift-value"></div>
+        </div>
+        <div class="key spacebar" data-value="" data-shift-value="">
+            <div class="value"></div>
+            <div class="shift-value"></div>
+        </div>
+        <div class="key alt" data-value="Alt" data-shift-value="">
+            <div class="value">Alt</div>
+            <div class="shift-value"></div>
+        </div>
+        <div class="key control control-right" data-value="Ctrl" data-shift-value="">
+            <div class="value">Ctrl</div>
+            <div class="shift-value"></div>
+        </div>
+        <div class="key arrow arrow-left" data-value="←" data-shift-value="">
+            <div class="value">←</div>
+            <div class="shift-value"></div>
+        </div>
+        <div class="key arrow arrow-down" data-value="↓" data-shift-value="">
+            <div class="value">↓</div>
+            <div class="shift-value"></div>
+        </div>
+        <div class="key arrow arrow-right" data-value="→" data-shift-value="">
+            <div class="value">→</div>
+            <div class="shift-value"></div>
+        </div>
+    </div>
+    </div>
+
+      </div>
+    </div>
+  </div>
+</body>
+</html>

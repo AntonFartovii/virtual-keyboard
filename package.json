@@ -1,0 +1,41 @@
+{
+  "name": "rss-virtual-keyboard",
+  "version": "1.0.0",
+  "description": "Виртуальная клавиатура",
+  "main": "webpack.config.js",
+  "type": "module",
+  "scripts": {
+    "start": "webpack --mode=development",
+    "build": "webpack --mode=production",
+    "eslint": "eslint src",
+    "dev": "webpack serve --mode=development",
+    "deploy": "gh-pages -d dist",
+    "build:deploy": "webpack --mode=production && gh-pages -d dist"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AntonFartovii/RSS-Virtual-Keyboard.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AntonFartovii/RSS-Virtual-Keyboard/issues"
+  },
+  "homepage": "https://github.com/AntonFartovii/RSS-Virtual-Keyboard#readme",
+  "devDependencies": {
+    "clean-webpack-plugin": "^4.0.0",
+    "css-loader": "^6.7.3",
+    "eslint": "^8.39.0",
+    "eslint-config-google": "^0.14.0",
+    "eslint-webpack-plugin": "^4.0.1",
+    "html-webpack-plugin": "^5.5.1",
+    "mini-css-extract-plugin": "^2.7.5",
+    "webpack": "^5.81.0",
+    "webpack-cli": "^5.0.2",
+    "webpack-dev-server": "^4.13.3"
+  },
+  "dependencies": {
+    "gh-pages": "^5.0.0"
+  }
+}
